@@ -1,0 +1,33 @@
+<?xml
+version="1.0"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+http://maven.apache.org/xsd/settings-1.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+
+<localRepository>/Users/shirk
+/.m2/repository</localRepository>
+
+
+<profiles>
+    <profile>
+    <id>ST</id>
+    <properties>
+     <github.global.userName>{shirko}</github.global.userName>
+     <github.global.password>gitshirk1</github.global.password>
+    </properties>
+
+    <repositories>
+      <repository>
+      <id>stagingRepo</id>
+      <name>Perfecto Mobile Staging Repo</name>
+      <!-- <url>https://github.com/rajpasupathy/PerfectoMobileJars/tree/master/PerfectoMobileJars/stagingRepo/</url>-->
+ <url> http://repository-perfectomobile.forge.cloudbees.com/public/com/ </url> 
+    <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+    </snapshots>
+
+   </repository>
+</repositories>
+</profile>
+</profiles>
+</settings>
