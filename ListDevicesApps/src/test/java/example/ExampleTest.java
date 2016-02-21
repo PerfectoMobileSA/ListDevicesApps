@@ -11,7 +11,7 @@ import org.testng.annotations.AfterTest;
 
 public class ExampleTest {
   @Test
-  public void testDevicesApps() {
+  public void testDevicesApps(String host, String username, String pwd) {
 	  new BuildDevicesApps();
   }
   @BeforeTest
