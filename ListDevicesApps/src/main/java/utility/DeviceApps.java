@@ -17,6 +17,7 @@ import com.perfectomobile.httpclient.device.DeviceResult;
  */
 public class DeviceApps {
 	
+	/** The device result. */
 	DeviceResult deviceResult;
 	
 	/** The device id. */
@@ -54,6 +55,11 @@ public class DeviceApps {
 		this.deviceResult = null;
 	}
 	
+	/**
+	 * Instantiates a new device apps.
+	 *
+	 * @param deviceResult the device result
+	 */
 	public DeviceApps(DeviceResult deviceResult) {
 		this.deviceResult = deviceResult;
 		this.deviceId = deviceResult.getResponseValue(DeviceParameter.DEVICE_ID);

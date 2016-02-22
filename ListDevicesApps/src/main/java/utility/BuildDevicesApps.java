@@ -34,18 +34,22 @@ public final class BuildDevicesApps {
     /** The devices list. */
     public static List<DeviceApps> devicesList;
     
-    /** the Devices Result List */
+    /**  the Devices Result List. */
     public static List<DeviceResult> deviceResultList;
     
     /** The excel utils. */
     public ExcelUtils excelUtils;
     
+    /** The host. */
     private String host;
     
+    /** The username. */
     private String username;
     
+    /** The password. */
     private String password;
     
+    /** The properties. */
     SystemProperties properties;
     
   
@@ -53,17 +57,17 @@ public final class BuildDevicesApps {
     
     /**
      * Instantiates a new builds the devices apps.
-     * @throws IOException 
-     * @throws FileNotFoundException 
+     *
+     * @throws FileNotFoundException the file not found exception
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     public BuildDevicesApps() throws FileNotFoundException, IOException  {
     this.properties = new SystemProperties();
-    	
-    System.out.println("11111111111111111111111111111");
+    
     this.host = System.getenv("HOST");
 	this.username = System.getenv("USERNAME");
 	this.password = System.getenv("PASSWORD");
-	System.out.println("222222222222222222222222");
+	
 	//define if we got environment variable, then work with them
 	if (host!=null && username!=null && password!=null){
 		SystemProperties.setHost(host);
@@ -74,22 +78,16 @@ public final class BuildDevicesApps {
     	this.username = SystemProperties.getUsername();
     	this.password = SystemProperties.getPassword();
 	}
-	System.out.println("333333333333333333");
-	System.out.println("XXXXXXXXXXXXXXXXXXX"+host );
-	System.out.println("XXXXXXXXXXXXXXXXXXX"+username );
-	System.out.println("XXXXXXXXXXXXXXXXXXX"+password );
-
-			
     	
-		ExcelUtils excelUtils =  new ExcelUtils(properties);
-		
-		 //build list of devices
-		buildListOfDevices();
-		//build list of applications for each device
-		buildListOfApps();
-         //write results to Excel:
-		excelUtils.writeToExcel(devicesList);
-    	//this(null,null,null);
+	ExcelUtils excelUtils =  new ExcelUtils(properties);
+	
+	 //build list of devices
+	buildListOfDevices();
+	//build list of applications for each device
+	buildListOfApps();
+     //write results to Excel:
+	excelUtils.writeToExcel(devicesList);
+	
     	
 	}
     
