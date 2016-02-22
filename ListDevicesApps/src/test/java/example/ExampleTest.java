@@ -18,9 +18,11 @@ public class ExampleTest {
 	@Test
   public void testDevicesApps() {
 	    String remoteHost = System.getProperty("BAR");
+	    System.getenv("BAR");
 		if (remoteHost == null) remoteHost = "http://localhost:4444/wd/hub";
 		
 		System.out.println("HEEEELLLLLLLLLLLLLOOOOOOOOOOO"+remoteHost);
+		System.out.println("HHHHHHHHHELLLLLLLL: "+System.getenv("BAR"));
 		
   }
   
