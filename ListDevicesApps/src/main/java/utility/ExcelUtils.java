@@ -44,22 +44,25 @@ public class ExcelUtils {
 	/** The create helper. */
 	private CreationHelper createHelper;
 	
+	//private SystemProperties prop;
+	
 	
 
 	
 	/**
 	 * Instantiates a new excel utils.
 	 */
-	public ExcelUtils() {
+	public ExcelUtils(SystemProperties prop) {
+		//this.prop = prop;
 		// Get Excel file path
 	  	//this.filePath = new File("").getAbsolutePath();
 		String timeStamp = new SimpleDateFormat("_MMddyyyy_HHmmss").format(new java.util.Date());
-	  	this.filePath = Constants.outputWorkbook + timeStamp + ".xlsx";
+	  	this.filePath = SystemProperties.getOutputworkbook() + timeStamp + ".xlsx";
 	  
 	  	// Open workbook
   	  	try {
 			this.setWorkbook(this.filePath);
-			this.setSheet(Constants.outputSheet, true);
+			this.setSheet(SystemProperties.getOutputsheet(), true);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -194,12 +197,12 @@ public class ExcelUtils {
 			row.createCell(1).setCellValue("Status");
 			row.createCell(2).setCellValue("AppsNumber");
 			row.createCell(3).setCellValue("AppsList");
-			
-			for (int i = 1; i <= Constants.deviceMaxApps; i++) {
+			int deviceMaxApps = SystemProperties.getDevicemaxapps();
+			for (int i = 1; i <= deviceMaxApps; i++) {
 				j = i+3;
 				row.createCell(j).setCellValue("App"+i);				
 			}
-			for (int i = 0; i < Constants.deviceMaxApps+4; i++) {
+			for (int i = 0; i < deviceMaxApps+4; i++) {
 				setCellColor(0,i,CellColors.YELLOW);
 			}
 			

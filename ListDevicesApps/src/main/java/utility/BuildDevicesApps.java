@@ -3,6 +3,8 @@
  */
 
 package utility;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -42,27 +44,45 @@ public final class BuildDevicesApps {
     
     private String username;
     
-    private String pwd;
+    private String password;
     
+    SystemProperties properties;
     
+  
+   
     
     /**
      * Instantiates a new builds the devices apps.
+     * @throws IOException 
+     * @throws FileNotFoundException 
      */
-    public BuildDevicesApps()  {
+    public BuildDevicesApps() throws FileNotFoundException, IOException  {
+    this.properties = new SystemProperties();
     	
-    	this(Constants.host,Constants.username,Constants.password);
+    
+    this.host = System.getenv("HOST");
+	this.username = System.getenv("USERNAME");
+	this.password = System.getenv("PASSWORD");
+	
+	//define if we got environment variable, then work with them
+	if (host!=null && username!=null && password!=null){
+		SystemProperties.setHost(host);
+		SystemProperties.setUsername(username);
+		SystemProperties.setPassword(password);
+	} else {//work only with config file parameters
+		this.host = SystemProperties.getHost();
+    	this.username = SystemProperties.getUsername();
+    	this.password = SystemProperties.getPassword();
 	}
-    
-    /**
-     * Instantiates a new builds the devices apps.
-     */
-    public BuildDevicesApps(String host, String username, String pwd)  {
+	
+	System.out.println("XXXXXXXXXXXXXXXXXXX"+host );
+	System.out.println("XXXXXXXXXXXXXXXXXXX"+username );
+	System.out.println("XXXXXXXXXXXXXXXXXXX"+password );
+	if (password==null)
+		System.out.println("HELLLLLLLOOOOOOOOO");
+			
     	
-    	this.host = host;
-    	this.username = username;
-    	this.pwd = pwd;
-		ExcelUtils excelUtils =  new ExcelUtils();
+		ExcelUtils excelUtils =  new ExcelUtils(properties);
 		
 		 //build list of devices
 		buildListOfDevices();
@@ -70,6 +90,8 @@ public final class BuildDevicesApps {
 		buildListOfApps();
          //write results to Excel:
 		excelUtils.writeToExcel(devicesList);
+    	//this(null,null,null);
+    	
 	}
     
 	/**
@@ -78,7 +100,7 @@ public final class BuildDevicesApps {
 	@SuppressWarnings("unchecked")
 	private void buildListOfApps() {
 		
-		ExecutorService pool = Executors.newFixedThreadPool(Constants.numberOfThreads);
+		ExecutorService pool = Executors.newFixedThreadPool(SystemProperties.getNumberofthreads());
 	    Set<Future<DeviceApps>> setDevice = new HashSet<Future<DeviceApps>>();
 	    
 	    try {
@@ -111,7 +133,7 @@ public final class BuildDevicesApps {
 	public void buildListOfDevices() {
 		
 		devicesList = new LinkedList<DeviceApps>();
-		 Credentials credentials = new Credentials(username,pwd);
+		 Credentials credentials = new Credentials(username,password);
 		 DevicesHttpClient client = new DevicesHttpClient(host, credentials);
         List inputParameters = new LinkedList<>();
        
@@ -247,7 +269,7 @@ public final class BuildDevicesApps {
     	        String browserName = "";
     	        DesiredCapabilities capabilities = new DesiredCapabilities(browserName, "", Platform.ANY);
     	        capabilities.setCapability("user", username);
-    	        capabilities.setCapability("password", pwd);
+    	        capabilities.setCapability("password", password);
     	        capabilities.setCapability("deviceName", deviceId);
     	
             	return capabilities;
