@@ -17,12 +17,15 @@ public class ExampleTest {
   }*/
 	@Test
   public void testDevicesApps() {
-	    String remoteHost = System.getProperty("BAR");
-	    System.getenv("BAR");
-		if (remoteHost == null) remoteHost = "http://localhost:4444/wd/hub";
-		
-		System.out.println("HEEEELLLLLLLLLLLLLOOOOOOOOOOO"+remoteHost);
-		System.out.println("HHHHHHHHHELLLLLLLL: "+System.getenv("BAR"));
+		String host = System.getenv("HOST");
+		String username = System.getenv("USERNAME");
+		String password = System.getenv("PASSWORD");
+	    
+		System.out.println("XXXXXXXXXXXXXXXXXXX"+host );
+		System.out.println("XXXXXXXXXXXXXXXXXXX"+username );
+		System.out.println("XXXXXXXXXXXXXXXXXXX"+password );
+		if (password==null)
+			System.out.println("HELLLLLLLOOOOOOOOO");
 		
   }
   

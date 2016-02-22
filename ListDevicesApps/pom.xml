@@ -58,7 +58,9 @@
                      <version>2.16</version>
                      <configuration> 
                      <properties>
-					    <BAR>${env.BAR}</BAR>
+					    <HOST>${env.HOST}</HOST>
+					    <USERNAME>${env.USERNAME}</USERNAME>
+					    <PASSWORD>${env.PASSWORD}</PASSWORD>
 					</properties>
                     <suiteXmlFiles> 
                    <suiteXmlFile>testng.xml</suiteXmlFile>
