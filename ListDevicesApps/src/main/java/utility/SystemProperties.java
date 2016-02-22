@@ -51,6 +51,10 @@ import java.util.Properties;
 		
 	}
 	
+	public static boolean isOutputWithTimestamp(){
+		return Boolean.parseBoolean(prop.getProperty("outputWithTimestamp"));
+	}
+	
 	public static void setHost(String host) {
 		prop.setProperty("host",host);
 	}

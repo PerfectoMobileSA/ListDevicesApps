@@ -57,7 +57,13 @@ public class ExcelUtils {
 		// Get Excel file path
 	  	//this.filePath = new File("").getAbsolutePath();
 		String timeStamp = new SimpleDateFormat("_MMddyyyy_HHmmss").format(new java.util.Date());
-	  	this.filePath = SystemProperties.getOutputworkbook() + timeStamp + ".xlsx";
+		
+		if (SystemProperties.isOutputWithTimestamp()){
+			this.filePath = SystemProperties.getOutputworkbook() + timeStamp + ".xlsx";
+		} else{
+			this.filePath = SystemProperties.getOutputworkbook() + ".xlsx";
+		}
+	  
 	  
 	  	// Open workbook
   	  	try {
