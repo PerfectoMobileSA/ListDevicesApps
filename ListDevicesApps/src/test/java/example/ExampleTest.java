@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
 public class ExampleTest {
-  @Test
+  //@Test
   /*public void testDevicesApps() {
 	  new BuildDevicesApps();
   }*/
