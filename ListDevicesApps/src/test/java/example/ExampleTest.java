@@ -2,6 +2,7 @@ package example;
 
 
 import org.testng.annotations.Test;
+import org.testng.annotations.Test;
 
 
 import utility.BuildDevicesApps;
@@ -14,11 +15,12 @@ public class ExampleTest {
   /*public void testDevicesApps() {
 	  new BuildDevicesApps();
   }*/
+	@Test
   public void testDevicesApps() {
 	    String remoteHost = System.getProperty("BAR");
 		if (remoteHost == null) remoteHost = "http://localhost:4444/wd/hub";
 		
-		System.out.println(remoteHost);
+		System.out.println("HEEEELLLLLLLLLLLLLOOOOOOOOOOO"+remoteHost);
 		
   }
   
