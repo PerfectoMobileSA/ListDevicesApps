@@ -57,12 +57,9 @@
                      <artifactId>maven-surefire-plugin</artifactId>
                      <version>2.16</version>
                      <configuration> 
-                     <systemPropertyVariables>
-                        <host>${env.HOST}</host>
-                        <username>${env.USERNAME}</username>
-                        <password>${env.PASSWORD}</password>
-                    </systemPropertyVariables>
-                     
+                     <properties>
+					    <BAR>${env.BAR}</BAR>
+					</properties>
                     <suiteXmlFiles> 
                    <suiteXmlFile>testng.xml</suiteXmlFile>
                   </suiteXmlFiles>
