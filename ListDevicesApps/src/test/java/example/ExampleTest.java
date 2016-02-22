@@ -20,12 +20,17 @@ public class ExampleTest {
 		String host = System.getenv("HOST");
 		String username = System.getenv("USERNAME");
 		String password = System.getenv("PASSWORD");
-	    
-		System.out.println("XXXXXXXXXXXXXXXXXXX"+host );
-		System.out.println("XXXXXXXXXXXXXXXXXXX"+username );
-		System.out.println("XXXXXXXXXXXXXXXXXXX"+password );
-		if (password==null)
-			System.out.println("HELLLLLLLOOOOOOOOO");
+	   try {
+			 
+		if (host!=null && username!=null && password!=null){
+			new BuildDevicesApps(host,username,password);
+		} else{
+			new BuildDevicesApps();
+		}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		
   }
   
