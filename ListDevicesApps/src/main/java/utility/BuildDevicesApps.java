@@ -21,6 +21,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import com.perfectomobile.httpclient.Credentials;
 import com.perfectomobile.httpclient.HttpClientException;
+import com.perfectomobile.httpclient.ParameterValue;
 import com.perfectomobile.httpclient.device.DeviceResult;
 import com.perfectomobile.httpclient.device.DevicesHttpClient;
 
@@ -133,6 +134,8 @@ public final class BuildDevicesApps {
 		 Credentials credentials = new Credentials(username,password);
 		 DevicesHttpClient client = new DevicesHttpClient(host, credentials);
         List inputParameters = new LinkedList<>();
+        ParameterValue param = new ParameterValue("availableTo", username);
+        inputParameters.add(param);
        
         deviceResultList = null;
         try {
